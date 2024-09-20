@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup Form</title>
+  </head>
+  <body>
+    <form>
+      <h2>Sign Up</h2>
+      <label for="name">Full Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Your full name"
+        required
+      />
+
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Your email"
+        required
+      />
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Choose a password"
+        required
+      />
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      let btn = document.querySelector("button");
+      btn.addEventListener("click", async function (e) {
+        e.preventDefault();
+        let fullname = document.querySelector("#name").value;
+        let email = document.querySelector("#email").value;
+        let password = document.querySelector("#password").value;
+
+        console.log({ fullname, email, password });
+        let resp = await axios.post("/auth/signup", {
+          fullname,
+          email,
+          password,
+        });
+        console.log(resp);
+      });
+    </script>
+  </body>
+</html>
